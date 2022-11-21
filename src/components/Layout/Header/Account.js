@@ -1,5 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
 import useOutsideClick from "../../../utils/useOutsideClick";
 import { GlobalState } from "../../../config/contextAPI";
 import { getDataFromDatabase } from "../../../config/firebase";

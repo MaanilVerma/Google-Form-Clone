@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import documentIcon from "../../../assets/svg/document.svg";
 import dotsIcon from "../../../assets/svg/verticalDots.svg";
@@ -13,15 +13,15 @@ import { deleteDataDatabase } from "../../../config/firebase";
 export const Form = ({ form, fetchUserData }) => {
   const { state, dispatch } = React.useContext(GlobalState);
   const [isDropdown, setDropdown] = React.useState(false);
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const openForm = () => {
-    push(`/${form.id}`);
+    navigate(`/${form.id}`, { replace: true });
     dispatch({ type: "CHANGE_ISEDIT", value: false });
   };
 
   const editForm = () => {
-    push(`/edit/${form.id}`);
+    navigate(`/edit/${form.id}`, { replace: true });
     dispatch({ type: "CHANGE_ISEDIT", value: true });
   };
 

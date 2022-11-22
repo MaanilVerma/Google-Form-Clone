@@ -1,5 +1,10 @@
 import React from "react";
-import { Redirect, useHistory, useLocation, useParams } from "react-router-dom";
+import {
+  Navigate,
+  useNavigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { GlobalState } from "../../../config/contextAPI";
@@ -14,7 +19,7 @@ import { getDate } from "../../../utils/getDate";
 
 export default function Form() {
   const { id } = useParams();
-  const { push } = useHistory();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const { state, dispatch } = React.useContext(GlobalState);
 
@@ -32,7 +37,7 @@ export default function Form() {
           state.inputs
         );
         alert("The data you entered was successfully recorded");
-        push("/");
+        navigate("/", { replace: true });
       } catch (e) {
         alert(e);
       } finally {
@@ -56,7 +61,7 @@ export default function Form() {
           date: getDate(),
         };
         await setDataToDatabase(`/users/${state.uid}/forms/${id}/`, form)
-          .then(() => push("/"))
+          .then(() => navigate("/", { replace: true }))
           .catch((e) => alert(e))
           .finally(() => dispatch({ type: "CHANGE_ISLOADING", value: false }));
       } else {
@@ -109,7 +114,7 @@ export default function Form() {
   };
 
   return !isAdmin() ? (
-    <Redirect to="/" />
+    <Navigate to="/" replace={true} state={{ from: pathname }} />
   ) : (
     <section>
       <form

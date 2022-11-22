@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import plusIcon from "../../../assets/svg/plus.svg";
 import pencilIcon from "../../../assets/svg/pencil.svg";
@@ -9,12 +9,12 @@ import { GlobalState } from "../../../config/contextAPI";
 export const NewFormButton = () => {
   const { state, dispatch } = React.useContext(GlobalState);
   const [isHover, setHover] = React.useState(false);
-  const { push } = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     const id = Date.now();
     state.isLogin
-      ? push(`edit/uid=${state.uid}&&id=${id}/`)
+      ? navigate(`edit/uid=${state.uid}&&id=${id}/`, { replace: true })
       : dispatch({ type: "CHANGE_ISMODAL", value: true });
   };
   return (

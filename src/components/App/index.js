@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { GlobalState, initialState, reducer } from "../../config/contextAPI";
 import Header from "../Layout/Header/";
@@ -39,11 +39,11 @@ function App() {
         <Header />
         <main className="pt-16">
           <AnimatePresence exitBeforeEnter>
-            <Switch location={location} key={location.key}>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/:id" component={Form} />
-              <Route path="/edit/:id" component={Form} />
-            </Switch>
+            <Routes location={location} key={location.key}>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/:id" element={<Form />} />
+              <Route path="/edit/:id" element={<Form />} />
+            </Routes>
           </AnimatePresence>
         </main>
         <Modal />

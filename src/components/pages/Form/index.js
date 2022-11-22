@@ -28,7 +28,8 @@ export default function Form() {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    if (state.contentForms.length === state.inputs.length) {
+
+    if (state.contentForms.length === state.inputs.length && state.isLogin) {
       dispatch({ type: "CHANGE_ISLOADING", value: false });
       try {
         await postDataToDatabase(
@@ -42,7 +43,11 @@ export default function Form() {
       } finally {
         dispatch({ type: "CHANGE_ISLOADING", value: false });
       }
-    } else {
+    }
+    if (state.contentForms.length === state.inputs.length && !state.isLogin) {
+      dispatch({ type: "CHANGE_ISMODAL", value: true });
+    }
+    if (state.contentForms.length !== state.inputs.length) {
       alert("Cannot be Empty");
     }
   };

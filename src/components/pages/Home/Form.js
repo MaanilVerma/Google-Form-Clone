@@ -16,12 +16,12 @@ export const Form = ({ form, fetchUserData }) => {
   const navigate = useNavigate();
 
   const openForm = () => {
-    navigate(`/${form.id}`, { replace: true });
+    navigate(`/${form.id}`);
     dispatch({ type: "CHANGE_ISEDIT", value: false });
   };
 
   const editForm = () => {
-    navigate(`/edit/${form.id}`, { replace: true });
+    navigate(`/edit/${form.id}`);
     dispatch({ type: "CHANGE_ISEDIT", value: true });
   };
 

@@ -14,7 +14,7 @@ export const NewFormButton = () => {
   const handleClick = () => {
     const id = Date.now();
     state.isLogin
-      ? navigate(`edit/uid=${state.uid}&&id=${id}/`, { replace: true })
+      ? navigate(`edit/uid=${state.uid}&&id=${id}/`)
       : dispatch({ type: "CHANGE_ISMODAL", value: true });
   };
   return (

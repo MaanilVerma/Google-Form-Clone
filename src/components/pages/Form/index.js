@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Navigate,
   useNavigate,
@@ -6,7 +6,6 @@ import {
   useParams,
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
 import { GlobalState } from "../../../config/contextAPI";
 import {
   getDataFromDatabase,
@@ -21,7 +20,7 @@ export default function Form() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { state, dispatch } = React.useContext(GlobalState);
+  const { state, dispatch } = useContext(GlobalState);
 
   const indexPathnameStart = pathname.indexOf("uid=") + 4;
   const indexPathnameEnd = pathname.indexOf("&&id=");
@@ -37,7 +36,7 @@ export default function Form() {
           state.inputs
         );
         alert("The data you entered was successfully recorded");
-        navigate("/", { replace: true });
+        navigate("/");
       } catch (e) {
         alert(e);
       } finally {
@@ -61,7 +60,7 @@ export default function Form() {
           date: getDate(),
         };
         await setDataToDatabase(`/users/${state.uid}/forms/${id}/`, form)
-          .then(() => navigate("/", { replace: true }))
+          .then(() => navigate("/"))
           .catch((e) => alert(e))
           .finally(() => dispatch({ type: "CHANGE_ISLOADING", value: false }));
       } else {
@@ -72,7 +71,7 @@ export default function Form() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const getData = async () => {
       dispatch({ type: "CHANGE_ISLOADING", value: true });
       try {
@@ -95,7 +94,7 @@ export default function Form() {
     };
   }, [dispatch, id, uidURL]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     pathname.substring(1, 5) === "edit"
       ? dispatch({ type: "CHANGE_ISEDIT", value: true })
       : dispatch({ type: "CHANGE_ISEDIT", value: false });
@@ -114,7 +113,7 @@ export default function Form() {
   };
 
   return !isAdmin() ? (
-    <Navigate to="/" replace={true} state={{ from: pathname }} />
+    <Navigate to="/" />
   ) : (
     <section>
       <form

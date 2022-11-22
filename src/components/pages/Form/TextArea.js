@@ -3,7 +3,7 @@ import React from "react";
 import { GlobalState } from "../../../config/contextAPI";
 import { QuestionContext } from "./Question";
 
-export const Textarea = () => {
+export const TextArea = () => {
   const { state, dispatch } = React.useContext(GlobalState);
   const id = React.useContext(QuestionContext);
   const [textarea, setTextarea] = React.useState("");

@@ -90,7 +90,7 @@ export default function Form() {
     };
   }, [dispatch, id, uidURL]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     pathname.substring(1, 5) === "edit"
       ? dispatch({ type: "CHANGE_ISEDIT", value: true })
       : dispatch({ type: "CHANGE_ISEDIT", value: false });

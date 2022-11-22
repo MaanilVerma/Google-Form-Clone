@@ -13,7 +13,7 @@ export const Account = () => {
   const ref = React.useRef();
   useOutsideClick(ref, () => setDropdown(false));
 
-  useEffect(() => {
+  React.useEffect(() => {
     const getUserData = async () =>
       await getDataFromDatabase(`users/${state.uid}`)
         .then((res) => setName(res.name))

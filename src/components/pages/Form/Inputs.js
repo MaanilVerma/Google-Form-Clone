@@ -3,7 +3,7 @@ import React from "react";
 import { GlobalState } from "../../../config/contextAPI";
 import { QuestionContext } from "./Question";
 import { Text } from "./Text";
-import { Textarea } from "./Textarea";
+import { TextArea } from "./TextArea";
 import { Radio } from "./Radio";
 import { Checkbox } from "./Checkbox";
 
@@ -55,7 +55,7 @@ export const Inputs = () => {
       )}
       {/* input  */}
       {inputType === "text" && <Text />}
-      {inputType === "textarea" && <Textarea />}
+      {inputType === "textarea" && <TextArea />}
       {inputType === "radio" && <Radio />}
       {inputType === "checkbox" && <Checkbox />}
     </div>

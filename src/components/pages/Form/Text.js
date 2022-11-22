@@ -41,7 +41,7 @@ export const Text = () => {
     <input
       onChange={(e) => handleChange(e)}
       value={text}
-      disabled={!state.isEdit}
+      disabled={state.isEdit}
       placeholder="Short Answer Text"
       className={`${
         state.isDark

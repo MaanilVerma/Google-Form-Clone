@@ -41,7 +41,7 @@ export const TextArea = () => {
     <textarea
       onChange={(e) => handleChange(e)}
       value={textarea}
-      disabled={!state.isEdit}
+      disabled={state.isEdit}
       placeholder="Long Answer Text"
       className={`${
         state.isDark
